@@ -6,8 +6,10 @@ var logger = require('morgan');
 // const bootstrap = require('bootstrap');
 
 var indexRouter = require('./routes/index');
-var javascriptRouter = require('./routes/javascript');
-var rubyRouter = require('./routes/ruby');
+var courseRouter = require('./routes/course');
+var averagesRouter = require('./routes/averages');
+var getAveragesRouter = require('./routes/getAverages');
+var averagesLinkRouter = require('./routes/averages_link');
 
 var app = express();
 
@@ -23,8 +25,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/home', indexRouter);
-app.use('/javascript', javascriptRouter);
-app.use('/ruby', rubyRouter);
+app.use('/javascript', courseRouter);
+app.use('/ruby', courseRouter);
+app.use('/averages', averagesRouter);
+app.use('/javascript/averages', averagesRouter);
+app.use('/ruby/averages', averagesRouter);
+app.use('/getAverages', getAveragesRouter);
+app.use('/averages_link', averagesLinkRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
