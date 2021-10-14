@@ -4,7 +4,7 @@ const JS_COURSES = ['JS101/109', 'JS120/129', 'JS130/139', 'LS170/171',
 'JS175', 'LS180/181', 'JS185', 'LS202', 'LS215/216', 'JS230/239'];
 
 const RB_COURSES = ['RB101/109', 'RB120/129', 'RB130/139', 'LS170/171',
-'RB175', 'LS180/181', 'RB185', 'LS202', 'JS210/211', 'LS215/LS216', 'JS225/229', 'JS230/239'];
+'RB175', 'LS180/181', 'RB185', 'LS202', 'JS210/211', 'LS215/216', 'JS225/229', 'JS230/239'];
 
 document.addEventListener('DOMContentLoaded', e => {
   let jsBtn = document.getElementById('javascript');
@@ -42,11 +42,14 @@ function displayList(courseName) {
   header.style.display = 'block';
 
   json.then(json => {
+    // console.log(json);
+
     courses.forEach(course => {
-      let hours = json[course];
+      let hours = json[course].avg;
+      let max = json[course].max;
   
       let li = document.createElement('li');
-      li.textContent = `On average, ${course} takes ${hours} hours.`;
+      li.textContent = `On average, ${course} takes ${hours} hours. The max on record is ${max}.`;
       ul.appendChild(li);
     })
   })
